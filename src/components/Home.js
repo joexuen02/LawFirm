@@ -49,22 +49,30 @@ function Home() {
                     <tbody>
                         {
                             TaskList && TaskList.length > 0
-                            ? TaskList.map((item) => (
-                                <tr key={item.id}>
-                                    <td>{item.Task}</td>
-                                    <td>{item.Description}</td>
-                                    <td>
-                                        <Button onClick={() => handleView(item.Task, item.Description)}>View</Button>
-                                        &nbsp;
-                                        <Link to={`/edit/${item.id}`}>
+                            ?
+                            TaskList.map((item) =>{
+                                return(
+                                    <tr>
+                                        <td>
+                                            {item.Task}
+                                        </td>
+                                        <td>
+                                            {item.Description}
+                                        </td>
+                                        <td>
+                                            <Button onClick={() => handleView(item.Task, item.Description)}>View</Button>
+                                            &nbsp;
+                                            <Link to={'/edit'}>
                                             <Button onClick={() => handleEdit(item.id, item.Task, item.Description)}>Edit</Button>
-                                        </Link>
-                                        &nbsp;
-                                        <Button onClick={() => handleDelete(item.id)}>DELETE</Button>
-                                    </td>
-                                </tr>
-                            ))
-                            : "No data available"
+                                            </Link>
+                                            &nbsp;
+                                            <Button onClick={() => handleDelete(item.id)}>DELETE</Button>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                            :
+                            "No data available"
                         }
                     </tbody>
                 </Table>
